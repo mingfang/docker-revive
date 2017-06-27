@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sv start php || exit 1
+
+source /etc/envvars
+
+cd /var/www/html/var && mkdir -p cache plugins/DataObjects plugins/recover templates_compiled
+chown -R www-data:www-data /var/www/html
+
+exec 2>&1
+exec nginx -g "daemon off;"
